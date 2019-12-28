@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { NEWS_SOURCE, NEWS_ERROR_RECEIVE, SEARCH, SEARCH_TEXT, SEARCH_ITEMS } from './actionsTypes';
+import Axios from 'axios';
+import { GET, SORT_ITEMS } from './actionsTypes';
 
-const URL = "http://www.mocky.io/v2/5d8686a032000024b607b40e?callback?myfunction";
+const URL = "https://jsonplaceholder.typicode.com/users";
 
-function storeNewsObject(allNews) {
+function storeNewsObject(userDetails) {
   return {
-    type: NEWS_SOURCE,
-    allNews,
+    type: GET,
+    userDetails,
     successMessage: 'successfully news loading',
     color: 'success'
   }
@@ -29,10 +29,10 @@ export function search(value) {
   }
 }
 // calling component 
-export function loagNewsObject() {
+export function loagUserObject() {
   return dispatch => {
-    return axios.get(URL)
-      .then(response => dispatch(storeNewsObject(response.data.articles)))
+    return  Axios.get(URL)
+      .then(response => dispatch(storeNewsObject(response.data)))
       .catch(error => dispatch(handelError(error)))
   }
 }
@@ -43,10 +43,10 @@ export function searchText(searchText) {
   }
 }
 
-export function filterItems(text) {
+export function sortItems(index) {
   return {
-    type: SEARCH_ITEMS,
-    searchNames: text
+    type: SORT_ITEMS,
+    index
   }
 }
 

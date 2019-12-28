@@ -1,31 +1,20 @@
-import { SEARCH, NEWS_SOURCE, SEARCH_TEXT, SEARCH_ITEMS, NEWS_ERROR_RECEIVE } from '../actions/actionsTypes';
+import { GET, SORT_ITEMS} from '../actions/actionsTypes';
 
 const initialState = {
-  allNews: [],
-  message: '',
-  color:'',
-  isLoading: false,
-  image: [],
-  searchText: '',
-  searchNames: '',
+  userDetails: [],
+
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case SEARCH: {
-      const { value } = action;
-      const works = state.contents.filter((val) => val.includes(value));
-      return { ...state, value, works };
-    }
-    case NEWS_SOURCE:
-      return { ...state, allNews: action.allNews, message: action.successMessage, color: action.color, isLoading: !state.isLoading };
-    case SEARCH_TEXT:
-      return { ...state, searchText: action.searchText }
-    case SEARCH_ITEMS:
-      return { ...state, searchNames: action.searchNames }
-    case NEWS_ERROR_RECEIVE:
-      return { ...state, message: action.errorMessage, color:action.color, isLoading: false };
-    default:
+    
+    case GET:
+      return { ...state, userDetails: action.userDetails};
+    case SORT_ITEMS:
+      return {        
+        ...state, userDetails:userDetails.filter(item=> item.id<=parseInt(action.index));
+      }
+      default:
       return state;
   }
 }
