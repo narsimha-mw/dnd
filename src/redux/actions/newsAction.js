@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { GET, SORT_ITEMS } from './actionsTypes';
+import { GET, SORT_ITEMS, NEWS_ERROR_RECEIVE,SEARCH, SEARCH_TEXT } from './actionsTypes';
 
 const URL = "https://jsonplaceholder.typicode.com/users";
 
@@ -36,10 +36,11 @@ export function loagUserObject() {
       .catch(error => dispatch(handelError(error)))
   }
 }
-export function searchText(searchText) {
+export function searchText(searchText, isValid) {
   return {
     type: SEARCH_TEXT,
-    searchText
+    searchText,
+    searchAction:isValid
   }
 }
 
