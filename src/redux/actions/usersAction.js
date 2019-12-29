@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { GET, SORT_ITEMS, NEWS_ERROR_RECEIVE,SEARCH, SEARCH_TEXT } from './actionsTypes';
+import { PAGINATION_ITEMS, GET, SORT_ITEMS, NEWS_ERROR_RECEIVE,SEARCH, SEARCH_TEXT } from './userActionsTypes';
 
 const URL = "https://jsonplaceholder.typicode.com/users";
 
@@ -50,4 +50,9 @@ export function sortItems(index) {
     index
   }
 }
-
+export function paginationAction(object){
+  return{
+    type:PAGINATION_ITEMS,
+    object
+  }
+}

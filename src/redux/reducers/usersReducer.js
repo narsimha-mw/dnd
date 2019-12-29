@@ -1,4 +1,4 @@
-import { GET, SORT_ITEMS, SEARCH_TEXT} from '../actions/actionsTypes';
+import { PAGINATION_ITEMS, GET, SORT_ITEMS, SEARCH_TEXT} from '../actions/usr ActionsTypes';
 
 const initialState = {
   userDetails: [], // orifginal list
@@ -33,7 +33,10 @@ export default function reducer(state = initialState, action) {
     }else{
       return {...state, isValidSearchText:action.searchAction}
     }
-
+    
+    case PAGINATION_ITEMS:
+      return{...state, userDetails:action.object}
+    
       default:
       return state;
   }
