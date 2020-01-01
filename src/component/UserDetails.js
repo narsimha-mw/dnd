@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Label, Input, Table, Container, Button } from 'reactstrap';
+import { Row, Col, Label, Input, Table, Container } from 'reactstrap';
 import { loagUserObject, sortItems, searchText } from '../redux/actions/usersAction';
 import Pagination from 'react-paginating';
+import {data} from './data';
+// import Dnd from './Dnd';
+import Cards from './Cards';
 
 class UserDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: 1
+      currentPage: 1,
+      dnd:false
     }
   }
   componentDidMount() {
@@ -33,7 +37,12 @@ class UserDetails extends Component {
       currentPage: page
     });
   };
+
+  handleDnd=()=>{
+  this.setState({dnd:!this.state.dnd})
+  }
   render() {
+
     const { currentPage } = this.state;
     const limit = 2;
     const pageCount = 3;
@@ -44,6 +53,8 @@ class UserDetails extends Component {
       listObject = searchFilterObject;
     } else if (index > 0) {
       listObject = filterItems;
+    } else if(this.state.dnd){
+      return <Cards data={data}/>
     }
     else {
       listObject = userDetails;
@@ -68,6 +79,9 @@ class UserDetails extends Component {
             </form>
           </div>
           <div>
+            <div>
+              <p onClick={this.handleDnd}>Dnd file</p>
+            </div>
             <Table bordered striped>
               <thead>
                 <tr>
@@ -96,10 +110,6 @@ class UserDetails extends Component {
               </Col>
               <Col sm={6}>
                 <div>
-    {console.log(listObject)}
-                  <ul>
-                     { listObject && listObject.map(item => <li key={item}>{item.name}</li>)} 
-                  </ul>
                   <Pagination 
                     total={total}
                     limit={limit}
@@ -117,9 +127,9 @@ class UserDetails extends Component {
                       getPageItemProps
                     }) => (
                         <div>
-                          <Button {...getPageItemProps({ pageValue: 1, onPageChange: this.handlePageChange })}>first</Button>
-                          {hasPreviousPage && (<Button {...getPageItemProps({ pageValue: previousPage, onPageChange: this.handlePageChange })}>
-                            {'<'} </Button>
+                          <small {...getPageItemProps({ pageValue: 1, onPageChange: this.handlePageChange })}>first</small>
+                          {hasPreviousPage && (<small {...getPageItemProps({ pageValue: previousPage, onPageChange: this.handlePageChange })}>
+                            {'<'} </small>
                           )}
                           {pages.map(page => {
                             let activePage = null;
@@ -127,22 +137,22 @@ class UserDetails extends Component {
                               activePage = { backgroundColor: '#fdce09' };
                             }
                             return (
-                              <Button {...getPageItemProps({
+                              <small {...getPageItemProps({
                                 pageValue: page, key: page, style: activePage, onPageChange: this.handlePageChange
-                              })}>{page} </Button>
+                              })}>{page} </small>
                             );
                           })}
-                          {hasNextPage && (<Button {...getPageItemProps({
+                          {hasNextPage && (<small {...getPageItemProps({
                             pageValue: nextPage, onPageChange: this.handlePageChange
-                          })}> {'>'}</Button>
+                          })}> {'>'}</small>
                           )}
-                          <Button {...getPageItemProps({ pageValue: totalPages, onPageChange: this.handlePageChange })}> last</Button>
+                          <small {...getPageItemProps({ pageValue: totalPages,
+                             onPageChange: this.handlePageChange})}> last</small>
                         </div>
                       )}
                   </Pagination>
                 </div>
-                );
-                            </Col>
+               </Col>
             </Row>
           </div>
         </Container>

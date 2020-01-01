@@ -1,4 +1,4 @@
-import { PAGINATION_ITEMS, GET, SORT_ITEMS, SEARCH_TEXT} from '../actions/usr ActionsTypes';
+import { PAGINATION_ITEMS, GET, SORT_ITEMS, SEARCH_TEXT} from '../actions/userActionsTypes';
 
 const initialState = {
   userDetails: [], // orifginal list
