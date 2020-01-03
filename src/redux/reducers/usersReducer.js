@@ -1,11 +1,13 @@
-import { PAGINATION_ITEMS, GET, SORT_ITEMS, SEARCH_TEXT} from '../actions/userActionsTypes';
+import { PAGINATION_ITEMS, GET, SORT_ITEMS, SEARCH_TEXT, MOVE_FORWARD_DATA, MOVE_BACKWARD_DATA, MOVE_FORWARD, MOVE, MOVE_BACKWARD} from '../actions/userActionsTypes';
 
 const initialState = {
   userDetails: [], // orifginal list
   filterItems:[], // filter list
   searchFilterObject:[], //search query by filter
   index: 0,
-  isValidSearchText:false
+  isValidSearchText:false,
+  forwordMoveItem:[],
+  backwordMoveItem:[]
 };
 
 export default function reducer(state = initialState, action) {
@@ -36,7 +38,18 @@ export default function reducer(state = initialState, action) {
     
     case PAGINATION_ITEMS:
       return{...state, userDetails:action.object}
-    
+    case MOVE:
+      return{...state, forwordMoveItem:action.data }
+    case MOVE_FORWARD:
+        const {forwordMoveItem}=state;
+        return{...state, forwordMoveItem:forwordMoveItem.filter((item,id)=>{return id!==action.id}) }
+      case MOVE_FORWARD_DATA:        
+        return{...state, backwordMoveItem: [...state.backwordMoveItem, action.data]}
+        case MOVE_BACKWARD:
+          const {backwordMoveItem}=state;
+          return{...state, backwordMoveItem:backwordMoveItem.filter((item,id)=>{return id!==action.id}) }
+        case MOVE_BACKWARD_DATA:        
+          return{...state, forwordMoveItem: [...state.forwordMoveItem, action.data]}
       default:
       return state;
   }

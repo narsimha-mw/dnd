@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { PAGINATION_ITEMS, GET, SORT_ITEMS, NEWS_ERROR_RECEIVE,SEARCH, SEARCH_TEXT } from './userActionsTypes';
+import { PAGINATION_ITEMS, GET, SORT_ITEMS, NEWS_ERROR_RECEIVE,SEARCH, SEARCH_TEXT, MOVE, MOVE_FORWARD, MOVE_FORWARD_DATA, MOVE_BACKWARD, MOVE_BACKWARD_DATA } from './userActionsTypes';
 
 const URL = "https://jsonplaceholder.typicode.com/users";
 
@@ -54,5 +54,35 @@ export function paginationAction(object){
   return{
     type:PAGINATION_ITEMS,
     object
+  }
+}
+export function moveData(data){
+  return{
+    type: MOVE,
+    data
+  }
+}
+export function forwordMove(id){
+  return{
+    type: MOVE_FORWARD,
+    id
+  }
+}
+export function fordwordMoveData(data){
+  return{
+    type: MOVE_FORWARD_DATA,
+    data
+  }
+}
+export function backwordMove(data){
+  return{
+    type: MOVE_BACKWARD,
+    data
+  }
+}
+export function backwordMoveData(data){
+  return{
+    type: MOVE_BACKWARD_DATA,
+    data
   }
 }

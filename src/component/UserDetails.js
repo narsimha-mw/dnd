@@ -110,47 +110,7 @@ class UserDetails extends Component {
               </Col>
               <Col sm={6}>
                 <div>
-                  <Pagination 
-                    total={total}
-                    limit={limit}
-                    pageCount={pageCount}
-                    currentPage={currentPage}
-                  >
-                    {({
-                      pages,
-                      currentPage,
-                      hasNextPage,
-                      hasPreviousPage,
-                      previousPage,
-                      nextPage,
-                      totalPages,
-                      getPageItemProps
-                    }) => (
-                        <div>
-                          <small {...getPageItemProps({ pageValue: 1, onPageChange: this.handlePageChange })}>first</small>
-                          {hasPreviousPage && (<small {...getPageItemProps({ pageValue: previousPage, onPageChange: this.handlePageChange })}>
-                            {'<'} </small>
-                          )}
-                          {pages.map(page => {
-                            let activePage = null;
-                            if (currentPage === page) {
-                              activePage = { backgroundColor: '#fdce09' };
-                            }
-                            return (
-                              <small {...getPageItemProps({
-                                pageValue: page, key: page, style: activePage, onPageChange: this.handlePageChange
-                              })}>{page} </small>
-                            );
-                          })}
-                          {hasNextPage && (<small {...getPageItemProps({
-                            pageValue: nextPage, onPageChange: this.handlePageChange
-                          })}> {'>'}</small>
-                          )}
-                          <small {...getPageItemProps({ pageValue: totalPages,
-                             onPageChange: this.handlePageChange})}> last</small>
-                        </div>
-                      )}
-                  </Pagination>
+                <p>Pagination</p>
                 </div>
                </Col>
             </Row>
