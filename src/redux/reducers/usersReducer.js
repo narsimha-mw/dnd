@@ -1,4 +1,4 @@
-import { PAGINATION_ITEMS, GET, SORT_ITEMS, SEARCH_TEXT, MOVE_FORWARD_DATA, MOVE_BACKWARD_DATA, MOVE_FORWARD, MOVE, MOVE_BACKWARD} from '../actions/userActionsTypes';
+import { PAGINATION_ITEMS,LOGIN, GET, SORT_ITEMS, SEARCH_TEXT, MOVE_FORWARD_DATA, MOVE_BACKWARD_DATA, MOVE_FORWARD, MOVE, MOVE_BACKWARD} from '../actions/userActionsTypes';
 
 const initialState = {
   userDetails: [], // orifginal list
@@ -7,12 +7,15 @@ const initialState = {
   index: 0,
   isValidSearchText:false,
   forwordMoveItem:[],
-  backwordMoveItem:[]
+  backwordMoveItem:[],
+  isLogin:false,
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    
+    case LOGIN:
+      console.log("============================================")
+      return {...state, isLogin:action.isLogin}
     case GET:
       return { ...state, userDetails:action.userDetails};
 
