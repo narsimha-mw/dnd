@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { loginPage } from '../redux/actions/usersAction';
 import { connect } from 'react-redux';
+import {User, setUser} from '../Store';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -17,10 +17,14 @@ class LoginPage extends Component {
 
     submit=(e)=>{
         e.preventDefault();
-        this.props.dispatch(loginPage(true))
+        const {email, password}=this.state;
+        if(email===User.email && password===User.password){
+            setUser(true);
+           }else{
+            setUser(false);
+         }
     }
     render() {
-        console.log("object")
         const {email, password}=this.state;
         return (<>
             <Form onSubmit={this.submit}>
@@ -37,5 +41,8 @@ class LoginPage extends Component {
         </>);
     }
 }
- 
-export default connect()(LoginPage);
+const mapStateToProps = (state) => {
+    return state;
+  }
+  
+export default connect(mapStateToProps)(LoginPage);

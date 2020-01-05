@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Label, Input, Table, Container } from 'reactstrap';
 import { loagUserObject, sortItems, searchText } from '../redux/actions/usersAction';
-import Pagination from 'react-paginating';
 import {data} from './data';
-// import Dnd from './Dnd';
 import Cards from './Cards';
 
 class UserDetails extends Component {
@@ -12,7 +10,7 @@ class UserDetails extends Component {
     super(props);
     this.state = {
       currentPage: 1,
-      dnd:false
+       moveItem:false
     }
   }
   componentDidMount() {
@@ -39,21 +37,21 @@ class UserDetails extends Component {
   };
 
   handleDnd=()=>{
-  this.setState({dnd:!this.state.dnd})
+  this.setState({moveItem:!this.state.moveItem})
   }
   render() {
 
-    const { currentPage } = this.state;
-    const limit = 2;
-    const pageCount = 3;
+    const { moveItem } = this.state;
+    // const limit = 2;
+    // const pageCount = 3;
     const { userDetails, filterItems, searchFilterObject, index, isValidSearchText } = this.props;
-    const total = userDetails.length * limit
+    // const total = userDetails.length * limit
     let listObject = [];
     if (isValidSearchText) {
       listObject = searchFilterObject;
     } else if (index > 0) {
       listObject = filterItems;
-    } else if(this.state.dnd){
+    } else if(moveItem){
       return <Cards data={data}/>
     }
     else {

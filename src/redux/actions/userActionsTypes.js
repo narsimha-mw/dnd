@@ -1,6 +1,5 @@
 export const SORT_ITEMS="SORT_ITEMS"; 
 export const GET="GET";
-export const LOGIN="LOGIN";
 export const SEARCH="SEARCH";
 export const SEARCH_TEXT="SEARCH_TEXT";
  export const NEWS_ERROR_RECEIVE="NEWS_ERROR_RECEIVE";

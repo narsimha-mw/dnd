@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { PAGINATION_ITEMS, LOGIN, GET, SORT_ITEMS, NEWS_ERROR_RECEIVE,SEARCH, SEARCH_TEXT,
+import { PAGINATION_ITEMS, GET, SORT_ITEMS, NEWS_ERROR_RECEIVE,SEARCH, SEARCH_TEXT,
    MOVE, MOVE_FORWARD, MOVE_FORWARD_DATA, MOVE_BACKWARD, MOVE_BACKWARD_DATA } from './userActionsTypes';
 
 const URL = "https://jsonplaceholder.typicode.com/users";
@@ -75,10 +75,10 @@ export function fordwordMoveData(data){
     data
   }
 }
-export function backwordMove(data){
+export function backwordMove(id){
   return{
     type: MOVE_BACKWARD,
-    data
+    id
   }
 }
 export function backwordMoveData(data){
@@ -86,10 +86,4 @@ export function backwordMoveData(data){
     type: MOVE_BACKWARD_DATA,
     data
   }
-}
-export function loginPage(isLogin){
-return {
-  type: LOGIN,
-  isLogin
-}
 }

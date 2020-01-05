@@ -1,0 +1,33 @@
+    .arrow{
+       size: 20;
+        padding-top: 20;
+        padding: 0;
+        background:transparent;
+        border: 2px solid darkslategrey;
+        border-radius: 6px;
+        clip-rule: evenodd;
+    }
+.icons{
+    padding-top: 10px;
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 20px;
+}
+    .arrow:hover{
+        background-color: #170897;
+        color: white;
+    }
+    .item{
+        padding: 5px;
+        border: dimgrey;
+        box-shadow: gray;
+        border-radius: 7px;
+        text-align: left;
+        position: relative;
+        border-width: 6px;
+    }
+    .item:hover{
+     background-color: #170897;
+    color: white;    
+    }
